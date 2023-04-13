@@ -1,0 +1,6 @@
+using Microsoft.Extensions.DependencyInjection.Extensions;
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers(options=>options.EnableEndpointRouting=false);
+var app = builder.Build();
+app.UseMvc(routes=>routes.MapRoute(name:"default",template:"{controller=home}/{action=index}/{id?}"));
+app.Run();
