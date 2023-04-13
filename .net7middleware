@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(options=>options.EnableEndpointRouting=false);
+    builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+builder.Services.AddSingleton<ITempDataDictionaryFactory, TempDataDictionaryFactory>();
 var app = builder.Build();
 app.UseMvc(routes=>routes.MapRoute(name:"default",template:"{controller=home}/{action=index}/{id?}"));
 app.Run();
